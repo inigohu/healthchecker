@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthchecker
+  labels:
+    app: healthchecker
+spec:
+  selector:
+    matchLabels:
+      app: healthchecker
+  template:
+    metadata:
+      labels:
+        app: healthchecker
+    spec:
+      containers:
+      - name: healthchecker
+        image: inigohu/healthchecker:latest
+        env:
+        - name: HOST
+          value: "helloweb-backend"
+        - name: PORT
+          value: "8080"
+        - name: INTERVAL
+          value: "10"
